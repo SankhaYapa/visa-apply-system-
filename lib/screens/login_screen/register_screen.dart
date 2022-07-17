@@ -5,6 +5,7 @@ import 'package:alwaysvisa/components/custom_text.dart';
 import 'package:alwaysvisa/components/custome_textfield.dart';
 import 'package:alwaysvisa/controllers/auth_controller.dart';
 import 'package:alwaysvisa/providers/auth/registration_provider.dart';
+import 'package:alwaysvisa/screens/login_screen/verify_screen.dart';
 import 'package:alwaysvisa/utils/app_colors.dart';
 import 'package:alwaysvisa/utils/constant.dart';
 import 'package:alwaysvisa/utils/util_function.dart';

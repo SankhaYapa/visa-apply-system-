@@ -1,5 +1,6 @@
 import 'package:alwaysvisa/controllers/db_controller.dart';
 import 'package:alwaysvisa/screens/home_screen.dart';
+import 'package:alwaysvisa/screens/login_screen/verify_screen.dart';
 import 'package:alwaysvisa/utils/util_function.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,7 +18,7 @@ class AuthController {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-
+      UtilFunction.navigateTo(context, VerifyScreen());
       if (userCredential.user!.uid.isNotEmpty) {
         await DatabaseController()
             .saveUserData(firstname, lastname, email, userCredential.user!.uid);

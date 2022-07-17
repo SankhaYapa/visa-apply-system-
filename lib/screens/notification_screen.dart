@@ -29,10 +29,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
           body: TabBarView(children: [
             Center(
-              child: Text('Tab1'),
+              child: Text('No Notificatins'),
             ),
             Center(
-              child: Text('Tab1'),
+              child: Text('No Notificatins'),
             )
           ]),
         ),

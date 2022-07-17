@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(
                   Icons.account_circle,
                   size: 30,
-                  color: Colors.pink,
+                  color: Color.fromARGB(255, 4, 37, 64),
                 ));
           }),
         ),

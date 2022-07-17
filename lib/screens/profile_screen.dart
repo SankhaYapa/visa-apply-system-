@@ -1,7 +1,9 @@
 import 'package:alwaysvisa/components/custom_button.dart';
 import 'package:alwaysvisa/models/user_model.dart';
 import 'package:alwaysvisa/providers/auth/user_provider.dart';
+import 'package:alwaysvisa/screens/change_password_screen.dart';
 import 'package:alwaysvisa/utils/app_colors.dart';
+import 'package:alwaysvisa/utils/util_function.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -72,9 +74,14 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 70,
+                      height: 150,
                     ),
-                    CustomButton(onTap: () {}, text: 'Change Paswords'),
+                    CustomButton(
+                        onTap: () {
+                          UtilFunction.navigateTo(
+                              context, ChangePasswordScreen());
+                        },
+                        text: 'Change Paswords'),
                     SizedBox(
                       height: 20,
                     ),
@@ -87,7 +94,7 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    CustomButton(onTap: () {}, text: 'App Version'),
+                    CustomButton(onTap: () {}, text: 'App Version 1.0.1'),
                   ],
                 ))
               ],
