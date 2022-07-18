@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:alwaysvisa/components/custom_button.dart';
+import 'package:alwaysvisa/components/custom_dialogBox.dart';
 import 'package:alwaysvisa/components/custom_text.dart';
 import 'package:alwaysvisa/components/custome_textfield.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,7 +25,7 @@ final subjectControler = TextEditingController();
 final descriptionController = TextEditingController();
 Future sendEmail() async {
   final serviceId = 'service_rp38611';
-  final templateId = 'template_u7le958';
+  final templateId = 'template_uwcjg8t';
   final userId = '8Oq0drGqIM-XZduJK';
 
   final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
@@ -122,13 +125,46 @@ class _InqureScreenState extends State<InqureScreen> {
               ),
               CustomButton(
                   onTap: () {
-                    sendEmail();
+                    if (inputValidation()) {
+                      sendEmail();
+                      DialogBox().dialogBox(
+                        context,
+                        DialogType.SUCCES,
+                        'Successfuly Send',
+                        'Please enter correct Information',
+                      );
+                    } else {
+                      DialogBox().dialogBox(
+                        context,
+                        DialogType.ERROR,
+                        'Please fill all details',
+                        'Please enter correct Information',
+                      );
+                    }
+
+                    print("sent");
                   },
-                  text: 'Inquire Now')
+                  text: 'Contact Now'),
             ],
           ),
         ),
       ),
     );
+  }
+
+  bool inputValidation() {
+    var isValid = false;
+    if (nameController.text.isEmpty ||
+        mobileController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        subjectControler.text.isEmpty ||
+        descriptionController.text.isEmpty) {
+      isValid = false;
+    } else if (!EmailValidator.validate(emailController.text)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
   }
 }

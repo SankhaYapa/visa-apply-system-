@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:alwaysvisa/components/custom_button.dart';
+import 'package:alwaysvisa/components/custom_dialogBox.dart';
 import 'package:alwaysvisa/components/custom_text.dart';
 import 'package:alwaysvisa/components/custome_textfield.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -123,14 +126,46 @@ class _ContactScreenState extends State<ContactScreen> {
               ),
               CustomButton(
                   onTap: () {
-                    sendEmail();
+                    if (inputValidation()) {
+                      sendEmail();
+                      DialogBox().dialogBox(
+                        context,
+                        DialogType.SUCCES,
+                        'Successfuly Deliverd',
+                        'Your appliction form successfully deliverd',
+                      );
+                    } else {
+                      DialogBox().dialogBox(
+                        context,
+                        DialogType.ERROR,
+                        'Please fill all details',
+                        'Please enter correct Information',
+                      );
+                    }
+
                     print("sent");
                   },
-                  text: 'Contact Now')
+                  text: 'Contact Now'),
             ],
           ),
         ),
       ),
     );
+  }
+
+  bool inputValidation() {
+    var isValid = false;
+    if (nameController.text.isEmpty ||
+        mobileController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        subjectControler.text.isEmpty ||
+        descriptionController.text.isEmpty) {
+      isValid = false;
+    } else if (!EmailValidator.validate(emailController.text)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
   }
 }

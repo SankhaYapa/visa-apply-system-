@@ -28,7 +28,7 @@ class AuthController {
         context,
         DialogType.SUCCES,
         'User Account Created',
-        'Now you can login',
+        'Verify Your Email address and Login Now',
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

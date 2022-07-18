@@ -1,15 +1,25 @@
+import 'dart:convert';
+
 import 'package:alwaysvisa/components/custom_text.dart';
 import 'package:alwaysvisa/components/custome_textfield.dart';
 import 'package:alwaysvisa/providers/appication_provider.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
-class AForm extends StatelessWidget {
+class AForm extends StatefulWidget {
   const AForm({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<AForm> createState() => _AFormState();
+}
+
+
+class _AFormState extends State<AForm> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ApplicationPrivider>(
